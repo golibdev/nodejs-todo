@@ -1,0 +1,55 @@
+<div class="container mt-4 mb-5">
+    {{#if error}}
+        <div class="alert alert-danger">
+            {{error}}
+        </div>
+    {{/if}}
+    <div class="card mb-5">
+        <div class="card-header">
+            <h3>TODO LIST</h3>
+        </div>
+        <div class="card-body">
+            <form action="/" method="post">
+                <div class="mb-3">
+                    <label for="model" class="form-label">Model</label>
+                    <input type="text" class="form-control" id="model" name="model">
+                </div>
+                <div class="mb-3">
+                    <label for="carName" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="carName" name="carName">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    {{#if data}}
+        <table class="table text-center">
+            <tr>
+                <th class="border border-dark">Car model</th>
+                <th class="border border-dark">Car name</th>
+                <th class="border border-dark">Update</th>
+                <th class="border border-dark">Delete</th>
+            </tr>
+            {{#each data}}
+                <tr>
+                    <td class="border border-dark">{{model}}</td>
+                    <td class="border border-dark">{{carName}}</td>
+                    <td class="border border-dark">
+                        <a href="/edit/{{id}}" class="btn btn-primary">Update</a>
+                    </td>
+                    <td class="border border-dark">
+                        <form action="/delete/{{id}}" method="post">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {{/each}}
+        </table>
+        {{else}}
+        <div class="alert alert-danger">
+            Hali car qushilmagan
+        </div>
+    {{/if}}
+</div>
+
