@@ -13,9 +13,7 @@ const addNewData = (newCar) => {
     const data = fs.readFileSync(path.join(__dirname, '..', 'data', "data.json"), 'utf8')
 
     const cars = JSON.parse(data)
-
-    console.log(cars)
-
+    
     cars.push(newCar)
 
     fs.writeFileSync(path.join(__dirname, '..', 'data', "data.json"), `${JSON.stringify(cars)}`)
