@@ -1,8 +1,8 @@
 <div class="container mt-4 mb-5">
-    {{#if error}}
-        <div class="alert alert-danger">
-            {{error}}
-        </div>
+    {{#if err}}
+    <div class="alert alert-danger">
+        <h3>{{err   }}</h3>
+    </div>
     {{/if}}
     <div class="card mb-5">
         <div class="card-header">
@@ -22,33 +22,40 @@
             </form>
         </div>
     </div>
-
     {{#if data}}
-        <table class="table text-center">
+    <table class="table text-center">
+        <tr>
+            <th class="border border-dark">Car model</th>
+            <th class="border border-dark">Car name</th>
+            <th class="border border-dark">Update</th>
+            <th class="border border-dark">Delete</th>
+            <th class="border border-dark">
+                Car Details
+            </th>
+        </tr>
+        {{#each data}}
             <tr>
-                <th class="border border-dark">Car model</th>
-                <th class="border border-dark">Car name</th>
-                <th class="border border-dark">Update</th>
-                <th class="border border-dark">Delete</th>
+                <td class="border border-dark">{{model}}</td>
+                <td class="border border-dark">{{carName}}</td>
+                <td class="border border-dark">
+                    <a href="/edit/{{id}}" class="btn btn-secondary">Update</a>
+                </td>
+                <td class="border border-dark">
+                    <form action="/delete/{{id}}" method="post">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+                <td class="border border-dark">
+                    <a href="/views/{{id}}" class="btn btn-primary">
+                        Views
+                    </a>
+                </td>
             </tr>
-            {{#each data}}
-                <tr>
-                    <td class="border border-dark">{{model}}</td>
-                    <td class="border border-dark">{{carName}}</td>
-                    <td class="border border-dark">
-                        <a href="/edit/{{id}}" class="btn btn-primary">Update</a>
-                    </td>
-                    <td class="border border-dark">
-                        <form action="/delete/{{id}}" method="post">
-                            <button class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            {{/each}}
-        </table>
-        {{else}}
+        {{/each}}
+    </table>
+    {{else}}
         <div class="alert alert-danger">
-            Hali car qushilmagan
+            Malumot qo'shilmagan
         </div>
     {{/if}}
 </div>

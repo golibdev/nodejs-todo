@@ -1,0 +1,36 @@
+<div class="container mt-5">
+    <a href="/" class="btn btn-success mb-5">Back</a>
+    <div class="card">
+        <div class="card-header">
+            <h3>{{car.carName}}</h3>
+        </div>
+        <div class="card-body">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th class="border border-dark">Model</th>
+                        <th class="border border-dark">Car name</th>
+                        <th class="border border-dark">Update</th>
+                        <th class="border border-dark">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#if car}}
+                        <tr>
+                            <td class="border border-dark">{{car.model}}</td>
+                            <td class="border border-dark">{{car.carName}}</td>
+                            <td class="border border-dark">
+                                <a href="/edit/{{car.id}}" class="btn btn-secondary">Edit</a>
+                            </td>
+                            <td class="border border-dark">
+                                <form action="/delete/{{car.id}}">
+                                    <button class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {{/if}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
