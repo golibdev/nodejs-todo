@@ -1,4 +1,5 @@
 const { v4 } = require('uuid')
+const Car = require('../models/carsModel')
 const {
     getAllData,
     addNewData,
@@ -7,16 +8,17 @@ const {
     updatedDataById
 } = require('../models/carModel')
 
-const getHomepage = (req, res) => {
-    const data = getAllData()
+const getHomepage = async (req, res) => {
+    const data = await Car.find().lean()
+    console.log(data)
     res.render("home", {
         title: "Home page",
         data: data.reverse()
     })
 }
 
-const addData = (req, res) => {
-    const data = getAllData()
+const addData = async (req, res) => {
+    const data = await Car.find().lean()
     const { model, carName } = req.body
 
     if(!model || !carName) {
@@ -26,13 +28,10 @@ const addData = (req, res) => {
         })
     }
 
-    const newCar = {
-        id: v4(),
-        model: model,
-        carName: carName
-    }
-
-    addNewData(newCar)
+    await Car.create({
+        carName: carName,
+        model: model
+    })
 
     res.redirect("/")
 }
